@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Time;
-use App\Models\WeekDay;
+use App\Models\User;
+use App\Models\Group;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -13,16 +13,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('groups', function (Blueprint $table) {
-            $table->id();
-            $table->foreignIdFor(Time::class);
-            $table->foreignIdFor(WeekDay::class);
+        Schema::create('groups_users', function (Blueprint $table) {
+            $table->foreignIdFor(Group::class);
+            $table->foreignIdFor(User::class);
             $table->timestamps();
 
+
             $table->unique([
-                'time_id',
-                'week_day_id'
-            ], 'TWD');
+                'group_id',
+                'user_id'
+            ], 'GU');
         });
     }
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('groups');
+        Schema::dropIfExists('groups_users');
     }
 };

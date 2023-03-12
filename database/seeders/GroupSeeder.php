@@ -2,8 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Time;
+use App\Models\Group;
+use App\Models\WeekDay;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class GroupSeeder extends Seeder
 {
@@ -12,6 +15,16 @@ class GroupSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $week_days = WeekDay::all();
+        $times = Time::all();
+
+        foreach ($week_days as $week_day){
+            foreach ($times as $time){
+                Group::create([
+                    'time_id' => $time->id,
+                    'week_day_id' => $week_day->id,
+                ]);
+            }
+        }
     }
 }

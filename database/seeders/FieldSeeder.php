@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Field;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class FieldSeeder extends Seeder
 {
@@ -12,6 +13,20 @@ class FieldSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $fields= [
+            [
+                'name' => 'فرانت-اند'
+            ],
+            [
+                'name' => 'بک-اند'
+            ],
+            [
+                'name' => 'هوش مصنوعی'
+            ]
+        ];
+
+        foreach ($fields as  $field) {
+            Field::create($field);
+        }
     }
 }
