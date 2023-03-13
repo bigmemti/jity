@@ -14,8 +14,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('field_user', function (Blueprint $table) {
-            $table->foreignIdFor(Field::class);
-            $table->foreignIdFor(User::class);
+            $table->foreignIdFor(Field::class)->constrained();
+            $table->foreignIdFor(User::class)->constrained();
             $table->timestamps();
 
 

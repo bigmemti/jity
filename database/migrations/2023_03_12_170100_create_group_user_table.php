@@ -14,8 +14,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('group_user', function (Blueprint $table) {
-            $table->foreignIdFor(Group::class);
-            $table->foreignIdFor(User::class);
+            $table->foreignIdFor(Group::class)->constrained();
+            $table->foreignIdFor(User::class)->constrained();
             $table->timestamps();
 
 

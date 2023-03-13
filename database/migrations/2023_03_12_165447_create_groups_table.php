@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('groups', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Time::class);
-            $table->foreignIdFor(WeekDay::class);
+            $table->foreignIdFor(Time::class)->constrained();
+            $table->foreignIdFor(WeekDay::class)->constrained();
             $table->timestamps();
 
             $table->unique([
