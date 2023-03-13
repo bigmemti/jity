@@ -32,7 +32,7 @@
 
             <div class="max-w-7xl mx-auto p-6 lg:p-8">
                <div>
-                    <h1 class="text-5xl">جمع آوری اطلاعات کانون برنامه نویسان</h1>
+                    <h1 class="text-5xl dark:text-white">جمع آوری اطلاعات کانون برنامه نویسان</h1>
                </div>
             </div>
         </div>
