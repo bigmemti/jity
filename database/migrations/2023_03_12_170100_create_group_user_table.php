@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('groups_users', function (Blueprint $table) {
+        Schema::create('group_user', function (Blueprint $table) {
             $table->foreignIdFor(Group::class);
             $table->foreignIdFor(User::class);
             $table->timestamps();

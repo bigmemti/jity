@@ -18,4 +18,14 @@ class Group extends Model
         'time_id',
         'week_day_id'
     ];
+
+    public function time()
+    {
+        return $this->belongsTo(Time::class);
+    }
+
+    public function week_day()
+    {
+        return $this->belongsTo(WeekDay::class);
+    }
 }
