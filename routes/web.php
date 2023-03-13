@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use App\Models\Field;
 use App\Models\Group;
 use Illuminate\Http\Request;
@@ -23,8 +24,9 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     $fields = Field::all();
-    $groups = Group::with(['time', 'week_day'])->get();
-    return view('dashboard', ['fields' => $fields, 'groups' => $groups]);
+    $groups = Group::with(['time', 'week_day'])->withCount('users')->get();
+    $users = User::all();
+    return view('dashboard', ['fields' => $fields, 'groups' => $groups, 'users' => $users]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

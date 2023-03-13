@@ -28,4 +28,9 @@ class Group extends Model
     {
         return $this->belongsTo(WeekDay::class);
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }
