@@ -1,7 +1,10 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Models\Field;
+use App\Models\Group;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +22,9 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $fields = Field::all();
+    $groups = Group::with(['time', 'week_day'])->get();
+    return view('dashboard', ['fields' => $fields, 'groups' => $groups]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -27,5 +32,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::post('/form', function (Request $request) {
+    $user = auth()->user();
+    $user->fields()->sync($request->fields);
+    $user->groups()->sync($request->groups);
+
+    return to_route('dashboard');
+})->name('form.submit');
 
 require __DIR__.'/auth.php';
